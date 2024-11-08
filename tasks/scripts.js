@@ -11,14 +11,9 @@ const browserSync = require('browser-sync').create();
 
 module.exports = function scripts() {
     return src([
-        'app/scripts/*.js', 'app/scripts/*.ts'
+        'app/scripts/*.js'
     ])
         .pipe(map.write('../sourcemaps'))    
-        .pipe(ts({
-            noImplicitAny: true,
-            outFile: 'main.min.js',
-            allowJs: true 
-        }))   
         .pipe(uglify())
         .pipe(concat('main.min.js'))
         .pipe(dest('app/js'))
